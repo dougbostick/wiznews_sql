@@ -1,10 +1,10 @@
-const pg = require('pg');
-const db = new pg.Client('postgres://localhost/wnews');
+// const pg = require('pg');
+// const db = new pg.Client('postgres://localhost/wnews');
 
-db.connect();
+// db.connect();
 
 const Sequelize = require('sequelize');
-const sqlDb = new Sequelize('postgres://localhost:5432/garden');
+const sqlDb = new Sequelize('postgres://localhost:5432/wnews');
 
 
 
