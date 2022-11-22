@@ -4,9 +4,9 @@ const { db, Users, Posts } = require('./sqlDb');
 //this function is async because it is making a db query 
 const seed = async () => {
     try{
-    //every time i make a db query I need to use the await keyword
+    //every time i need to talk to my db query I need to use the await keyword
 
-    //this is how we clear our old tables
+    //this is how we connect to the db and clear our old tables
         await db.sync({force: true})
 
         //each create method adds a row to its table
@@ -68,6 +68,14 @@ const seed = async () => {
 
         await Users.create({
             name: 'Doug'
+        })
+
+        await Users.create({
+            name: 'Mathis'
+        })
+
+        await Users.create({
+            name: 'DJ Douglas'
         })
 
         await Posts.create({

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const  { db }   = require('../db');
+// const  db    = require('../db');
 const postList = require('../views/postList');
 const postDetails = require('../views/postDetails');
 const addPost = require('../views/addPost');
@@ -11,11 +11,6 @@ router.get('/', async (req, res, next) => { //http://localhost:1337/posts
         // const data = await db.query('SELECT * FROM posts');
         const data = await Posts.findAll()
         console.log('DATA', data)
-        // const user = await Users.find({
-        //     where: {
-        //         id: data.userid
-        //     }
-        // })
         res.send(postList(data))
     } catch(err){
         next(err);
@@ -50,20 +45,22 @@ router.post('/', async (req, res, next) => {
     const name = req.body.name;
     const title = req.body.title;
     const content = req.body.content;
-
+    let author;
     // let author = await db.query('SELECT * FROM users WHERE name = $1', [name]);
     const authorData = await Users.findAll({
         where: {
             name: name,
         }
     })
-    let author = authorData[0].dataValues;
-    console.log('AUTHOR', author)
 
-    if(!author){
-       author = await Users.create({name: name})
-       console.log('new auth', author)
+    if(authorData.length) {
+        console.log(authorData);
+         author = authorData[0].dataValues;
+    } else {
+        author = await Users.create({name: name})
+        console.log('new auth', author)
     }
+    console.log('AUTHOR', author)
 
     const newPost = await Posts.create({userid: author.id, title, content});
 

@@ -1,13 +1,10 @@
-// const pg = require('pg');
-// const db = new pg.Client('postgres://localhost/wnews');
+const pg = require('pg');
+const db = new pg.Client('postgres://localhost/wnews');
 
-// db.connect();
-
-const Sequelize = require('sequelize');
-const sqlDb = new Sequelize('postgres://localhost:5432/wnews');
+db.connect();
 
 
 
-module.exports = { db, sqlDb };
+module.exports = db
 
 //refactor using sequelize
