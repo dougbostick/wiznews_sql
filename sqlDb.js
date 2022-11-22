@@ -1,4 +1,4 @@
-//connect to DB
+//create an instance of Sequelize 
 const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/wnews')
 

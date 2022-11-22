@@ -54,9 +54,10 @@ router.post('/', async (req, res, next) => {
     })
 
     if(authorData.length) {
-        console.log(authorData);
+        // console.log('AUTH DATA', authorData);
          author = authorData[0].dataValues;
     } else {
+        // console.log('AUTH DATA', authorData);
         author = await Users.create({name: name})
         console.log('new auth', author)
     }

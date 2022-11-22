@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
-    "seed": "psql -d wnews -a -f ./seed.sql && psql -d wnews -a -f ./upvotes_seed.sql"
+    "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",

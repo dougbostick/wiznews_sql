@@ -4,10 +4,12 @@ const { db, Users, Posts } = require('./sqlDb');
 //this function is async because it is making a db query 
 const seed = async () => {
     try{
-    //every time i need to talk to my db query I need to use the await keyword
+    //every time i need to talk to my db I need to use the await keyword
 
     //this is how we connect to the db and clear our old tables
-        await db.sync({force: true})
+        await db.sync({force: true}).then(() => {
+            console.log('synced to db')
+        })
 
         //each create method adds a row to its table
         await Users.create({
@@ -75,7 +77,11 @@ const seed = async () => {
         })
 
         await Users.create({
-            name: 'DJ Douglas'
+            name: 'DJ Douglas!!!'
+        })
+
+        await Users.create({
+            name: 'Joe Leahy'
         })
 
         await Posts.create({
@@ -114,8 +120,14 @@ const seed = async () => {
             title: 'The complete quidditch statistics',
             content: 'This is the Complete source for quidditch history including complete player, team, and league stats, awards, records, leaders, rookies and scores.'
         })
+
+        await Posts.create({
+            userid: 100,
+            title: 'The complete baking bible',
+            content: 'This is the Complete sauce for quidditch history including complete player, team, and league stats, awards, records, leaders, rookies and scores.'
+        })
     } catch (err){
-        console.log(err);
+        console.error(err);
     }
 }
 
